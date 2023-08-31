@@ -1,27 +1,18 @@
+import 'package:chatapp/common/routes/routes.dart';
+import 'package:chatapp/pages/welcome/state.dart';
 import 'package:get/get.dart';
 
 class WelcomeController extends GetxController {
-  WelcomeController();
+ final state =  WelcomeState();
+ WelcomeController();
 
-  _initData() {
-    update(["welcome"]);
-  }
+ changeIndex(int index)async{
+  state.index.value = index;
+ }
 
-  void onTap() {}
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
-  @override
-  void onReady() {
-    super.onReady();
-    _initData();
-  }
-
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
+ handleSignIn()async{
+ // await ConfigStore.to.saveAlreadyOpen();
+  Get.offAndToNamed(AppRoutes.SIGN_IN);
+ }
 }
