@@ -1,3 +1,4 @@
+// ignore_for_file: constant_identifier_names
 import 'package:chatapp/common/routes/routes.dart';
 import 'package:chatapp/pages/signin/index.dart';
 import 'package:chatapp/pages/welcome/index.dart';
