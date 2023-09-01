@@ -7,8 +7,13 @@ import 'package:get/route_manager.dart';
 class AppPages {
   static const INITIAL = AppRoutes.INITIAL;
   static final List<GetPage> routes = [
-    GetPage(name: AppRoutes.INITIAL, page: () => const WelcomePage(), binding: WelcomeBiding()),
-
-    GetPage(name: AppRoutes.SIGN_IN, page: ()=> const SigninPage() , binding: SignInBiding())
+    GetPage(
+        name: AppRoutes.INITIAL,
+        page: () => const WelcomePage(),
+        binding: WelcomeBiding()),
+    GetPage(
+        name: AppRoutes.SIGN_IN,
+        page: () => const SigninPage(),
+        binding: SignInBiding())
   ];
 }
