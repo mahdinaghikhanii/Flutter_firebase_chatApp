@@ -87,14 +87,12 @@ class WelcomePage extends GetView<WelcomeController> {
                                       color: Colors.white, fontSize: 18),
                                   textAlign: TextAlign.center),
                             ),
-                          const  SizedBox(height: 50),
+                            const SizedBox(height: 50),
                             SizedBox(
                               width: 240,
                               height: 45,
                               child: ElevatedButton(
-                                style: const ButtonStyle(
-                                  
-                                ),
+                                  style: const ButtonStyle(),
                                   onPressed: () {
                                     controller.handleSignIn();
                                   },

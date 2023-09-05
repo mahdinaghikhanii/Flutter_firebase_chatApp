@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
         builder: (context, child) => GetMaterialApp(
-              title: 'Flutter Demo',
+              title: '',
               theme: ThemeData(
                 textTheme: TextTheme(
                     titleSmall: TextStyle(
