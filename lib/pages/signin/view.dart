@@ -17,7 +17,9 @@ class SigninPage extends GetView<SigninController> {
           children: [
             _buildLogo(context),
             _buildThirdPartyLogin(context),
-            buttonLoginWidgets(onPressed: () {}, context: context)
+            buttonLoginWidgets(onPressed: () {
+              controller.handleSignIn();
+            }, context: context)
           ],
         ));
   }

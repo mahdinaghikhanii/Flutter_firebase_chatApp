@@ -17,3 +17,4 @@ class ConfigStore extends GetxController {
     return StorageService.to.setBool("STORAGE_DEVICE_FIRST_OPEN_KEY", true);
   }
 }
+   

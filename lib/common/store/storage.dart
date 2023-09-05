@@ -21,4 +21,7 @@ class StorageService extends GetxController {
   bool getBool(String key) {
     return _preferences.getBool(key) ?? false;
   }
+  String getString(String key) {
+    return _preferences.getString(key) ?? '';
+  }
 }
