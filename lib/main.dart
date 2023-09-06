@@ -1,6 +1,7 @@
 import 'package:chatapp/common/config/config.dart';
 import 'package:chatapp/common/routes/pages.dart';
 import 'package:chatapp/common/store/storage.dart';
+import 'package:chatapp/common/store/user.dart';
 import 'package:chatapp/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Get.putAsync<StorageService>(() => StorageService().init());
   Get.put<ConfigStore>(ConfigStore());
+  Get.put<UserStore>(UserStore());
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }

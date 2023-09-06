@@ -30,10 +30,15 @@ class UserData {
         addTiem: data?['addtime']);
   }
 
-  Map<String ,dynamic> toFireStore(){
+  Map<String, dynamic> toFireStore() {
     return {
-      if(id != null) "id" : id,
-      if(name != null) "name" : name
+      if (id != null) "id": id,
+      if (name != null) "name": name,
+      if (email != null) "email": email,
+      if (photoUrl != null) "photourl": photoUrl,
+      if (location != null) "location": location,
+      if (fcmToken != null) "fcmtoken": fcmToken,
+      if (addTiem != null) "addtime": addTiem
     };
   }
 }
