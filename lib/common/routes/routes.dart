@@ -3,4 +3,6 @@ class AppRoutes{
   static  const  INITIAL = '/WELCOME';
   static const SIGN_IN = '/SIGN_IN';
   static const NotFound = '/not_found';
+  static const APPLICATION = '/APPLICATION';
+  static const CONTACT = '/CONTACT';
 }

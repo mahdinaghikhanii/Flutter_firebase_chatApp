@@ -46,16 +46,22 @@ class UserData {
 class UserLoginResponseEntity {
   String? accessToken;
   String? disPlayName;
-  String? emai;
+  String? email;
   String? photoUrl;
 
   UserLoginResponseEntity(
-      {this.accessToken, this.disPlayName, this.emai, this.photoUrl});
+      {this.accessToken, this.disPlayName, this.email, this.photoUrl});
 
   factory UserLoginResponseEntity.fromJson(Map<String, dynamic> json) =>
       UserLoginResponseEntity(
           accessToken: json["access_token"],
           disPlayName: json["display_name"],
-          emai: json["email"],
-          photoUrl: json["photoUrl"]);
+          email: json["email"],
+          photoUrl: json[""]);
+  Map<String, dynamic> toJson() => {
+        "access_token": accessToken,
+        "display_name": disPlayName,
+        "email": email,
+        "photoUrl": photoUrl
+      };
 }

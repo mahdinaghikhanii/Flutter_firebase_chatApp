@@ -1,7 +1,9 @@
 import 'package:chatapp/common/entities/user.dart';
+import 'package:chatapp/common/routes/routes.dart';
 import 'package:chatapp/common/store/user.dart';
 import 'package:chatapp/pages/signin/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -16,15 +18,21 @@ class SigninController extends GetxController {
     try {
       var user = await _googleSignIn.signIn();
       if (user != null) {
+        final _gAuthentication = await user.authentication;
+        final _credential = GoogleAuthProvider.credential(
+            idToken: _gAuthentication.idToken,
+            accessToken: _gAuthentication.accessToken);
+        await FirebaseAuth.instance.signInWithCredential(_credential);
         String displayName = user.displayName ?? user.email;
         String email = user.email;
         String id = user.id;
         String photoUrl = user.photoUrl ?? "";
         UserLoginResponseEntity userProfile = UserLoginResponseEntity();
-        userProfile.emai = email;
+        userProfile.email = email;
         userProfile.accessToken = id;
         userProfile.disPlayName = displayName;
         userProfile.photoUrl = photoUrl;
+
         UserStore.to.saveProfile(userProfile);
         var userBase = await db
             .collection("users")
@@ -52,16 +60,29 @@ class SigninController extends GetxController {
                       userData.toFireStore())
               .add(data);
         }
-        Get.showSnackbar(const GetSnackBar(
-            title: "Success",
-            message: "Login success",
-            backgroundColor: Colors.green));
+        Get.snackbar("Success", "Login success", backgroundColor: Colors.green);
+
+        Get.offAndToNamed(AppRoutes.APPLICATION);
       }
     } catch (e) {
-      Get.showSnackbar(const GetSnackBar(
-            title: "Error",
-            message: "Login Failed",
-            backgroundColor: Colors.red));
+      Get.snackbar("Error", "Login Failed", backgroundColor: Colors.red);
     }
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print("User is currentlu log Out");
+      } else {
+        print("User is logged in");
+      }
+    });
+  }
+
+  signOut() async {
+    await _googleSignIn.signOut();
+    await FirebaseAuth.instance.signOut();
   }
 }
